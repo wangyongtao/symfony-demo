@@ -16,9 +16,10 @@ class ProductController extends AbstractController
     {
         $product = $doctrine->getRepository(Product::class)->findAll();
         if (!$product) {
-            throw $this->createNotFoundException(
-                'No product found!'
-            );
+            return $this->json([
+                'errorCode' => 404,
+                'errorMsg' => 'no user found',
+            ], 404);
         }
 
         return $this->json($product);

@@ -51,8 +51,8 @@ class UserRepository extends ServiceEntityRepository
         $isActive = $criteria['is_active'] ?? -1;
         $isMember = $criteria['is_member'] ?? -1;
         $userType = trim($criteria['user_type'] ?? '');
-        $startTime = $criteria['login_start_Time'] ?? "";
-        $endTime = $criteria['login_end_Time'] ?? "";
+        $startTime = $criteria['login_start_time'] ?? "";
+        $endTime = $criteria['login_end_time'] ?? "";
         $perPage = min($perPage, 1000); // per page limit
 
         $offset = ($page - 1) > 0 ? $page * $perPage : 0;

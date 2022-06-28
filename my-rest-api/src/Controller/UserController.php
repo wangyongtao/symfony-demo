@@ -21,17 +21,22 @@ class UserController extends AbstractController
         $limit = intval($request->query->get('limit', 1));
         $criteria = $request->query->all();
 
-        $product = $doctrine->getRepository(User::class)->findByFilter($criteria, $page, $limit);
-        if (!$product) {
-            throw $this->createNotFoundException(
-                'No product found!'
-            );
+        $users = $doctrine->getRepository(User::class)->findByFilter($criteria, $page, $limit);
+        if (!$users) {
+            return $this->json([
+                'errorCode' => 404,
+                'errorMsg' => 'no user found',
+            ], 404);
         }
 
         return $this->json([
-            'data'  => $product,
+            'data'  => $users,
             'page'  => $page,
             'limit'  => $limit,
+//            'total' => 0,
+//            'totalPages' => 0,
+//            'currentPage' > $page,
+//            'pageSize' > $limit,
         ]);
     }
 

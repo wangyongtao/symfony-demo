@@ -246,13 +246,62 @@ request params:
 | login_start_Time  |  string  | 2015-12-12T06:31:08+00:00  |
 | login_end_Time    |  string  | 2021-12-12T06:31:08+00:00  |
 
+
 response data: 
+
+http://localhost:8000/users?page=1&limit=2&is_active=1
+
+```json
+{
+    "data":[
+        {
+            "id":195,
+            "username":"test_195_user",
+            "is_active":1,
+            "is_member":0,
+            "user_type":2,
+            "last_login_at":{
+                "date":"2022-03-30 13:27:00.000000",
+                "timezone_type":3,
+                "timezone":"UTC"
+            }
+        },
+        {
+            "id":206,
+            "username":"test_206_user",
+            "is_active":1,
+            "is_member":0,
+            "user_type":1,
+            "last_login_at":{
+                "date":"2022-02-15 13:35:29.000000",
+                "timezone_type":3,
+                "timezone":"UTC"
+            }
+        }
+    ],
+    "page":1,
+    "limit":2
+}
+```
+
+请求示例： 
+
+http://localhost:8000/users?is_member=1&limit=2&page=3
+
+http://localhost:8000/users?is_member=1&is_active=1&limit=2&page=3
+
+http://localhost:8000/users?is_member=1&is_active=1&user_type=1,2&limit=2&page=3
+
+http://localhost:8000/users?page=5&limit=2&is_member=1&login_start_time=2010-02-18T07:36:56&login_end_time=2021-02-18T07:36:56+00:00
 
 
 ## 添加索引：
 
+对于经常用到的查询字段，要加上索引。
+
+```bash
 ALTER TABLE `test_users` 
  ADD INDEX `index_is_member` (`is_member`),
  ADD INDEX `index_user_type` (`user_type`),
- ADD INDEX `index_last_login_at` (`last_login_at`),
-;
+ ADD INDEX `index_last_login_at` (`last_login_at`);
+```
