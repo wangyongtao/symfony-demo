@@ -16,11 +16,15 @@ Zend Engine v4.1.6, Copyright (c) Zend Technologies
 
 macOS 使用 brew 安装 symfony-cli: 
 
+```
 $ brew install symfony-cli/tap/symfony-cli
+```
 
 查看： 
 
+```
 $ symfony -v
+```
 
 symfony 命令被安装在：
 
@@ -86,15 +90,17 @@ $ symfony server:start
 
 安装 maker-bundle， 可以用来生成一些文件：
 
+```
 composer require symfony/maker-bundle --dev
-
+```
 
 新建控制器:
 
+```
 php bin/console make:controller ProductController
 
 php bin/console make:controller UserController
-
+```
 
 该命令会直接生成 Controller 文件，位置在 src/Controller 目录。
 
@@ -124,12 +130,13 @@ class ProductController extends AbstractController
 
 使用 curl 请求：
 
+```
 $ curl http://localhost:8000/product
 {"message":"Welcome to your new controller!","path":"src\/Controller\/ProductController.php"}%
 
 $ curl http://localhost:8000/user
 {"message":"Welcome to your new controller!","path":"src\/Controller\/UserController.php"}%
-
+```
 
 ## 新建实体类 entity
 
@@ -143,11 +150,15 @@ composer require orm
 
 需要先安装 orm 包:
 
+```
 $ composer require orm
+```
 
 该命令会引用 doctrine 相关的一系列包。
 
+```
 $ php bin/console make:entity 
+```
 
 创建 entity 文件时，同时也会生成 repository 文件： 
 
@@ -192,27 +203,34 @@ products
 DATABASE_URL="mysql://user:pwd@127.0.0.1:3306/db_name?serverVersion=8.0&charset=utf8mb4"
 ```
 
+本地配置可使用 .env.local 文件。
 
 ## 测试
 
 安装测试需要的库 `symfony/test-pack`: 
 
+```
 $ composer require --dev symfony/test-pack
-
+```
 
 安装成功，可以使用 PHPUnit 命令：
 
+```
 $ php bin/phpunit
+```
 
 使用 filter 参数过滤要执行的测试文件或方法：
- 
-$ php bin/phpunit --filter FunctionTest
-$ php bin/phpunit --filter testGetUserList
 
+``` 
+$ php bin/phpunit --filter FunctionTest  
+$ php bin/phpunit --filter testGetUserList
+```
 
 可以使用 make:test 创建测试文件：
 
+```
 $ php bin/console make:test
+```
 
 执行测试： 
 
